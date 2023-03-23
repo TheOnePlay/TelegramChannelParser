@@ -3,8 +3,9 @@ import pandas
 
 # Using OS library to call CLI commands in Python
 channel = input("Write channel name: ")
+count = input("Write count of posts: ")
 print("Starting parsing...")
-os.system(f"snscrape --jsonl telegram-channel {channel} > telegram-@{channel}.json")
+os.system(f"snscrape --jsonl --max-results {count} telegram-channel {channel} > telegram-@{channel}.json")
 # Reads the json generated from the CLI commands above and creates a pandas dataframe
 tweets_df = pandas.read_json(f'telegram-@{channel}.json', lines=True)
 print("Ending parsing.")
